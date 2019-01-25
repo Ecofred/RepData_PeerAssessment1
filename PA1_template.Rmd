@@ -8,6 +8,7 @@ output:
 ```{r}
 library(readr)
 library(dplyr)
+library(ggplot2)
 ```
 
 ## Loading and preprocessing the data
@@ -20,12 +21,19 @@ str(activity)
 ## What is mean total number of steps taken per day?
 
 ```{r}
-activity %>% 
+sum_step_day <-
+  activity %>% 
   group_by(date) %>% 
-  summarise(step_day = sum(steps,na.rm = TRUE)) %>% 
-  summarise(mean_step_day = mean(step_day,na.rm = TRUE))
-```
+  summarise(step_day = sum(steps,na.rm = TRUE))
 
+mean_step_day <- mean(sum_step_day$step_day, na.rm = TRUE)
+median_step_day <- median(sum_step_day$step_day, na.rm = TRUE)
+
+hist(sum_step_day$step_day, main = 'Sum of step per day');
+abline(v=mean_step_day,col='blue')
+text(mean_step_day - 1000, 20, 'mean')
+
+```
 
 ## What is the average daily activity pattern?
 
