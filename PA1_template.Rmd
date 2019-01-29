@@ -20,16 +20,15 @@ because PA1_template.Rmd appears to be an R Markdown v2 document
 
 
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(readr)
 library(dplyr)
 library(ggplot2)
 ```
 
 ## Loading and preprocessing the data
-```{r}
+```{r message=FALSE, warning=FALSE}
 activity <- read_csv('activity.zip')
-str(activity)
 ```
 
 

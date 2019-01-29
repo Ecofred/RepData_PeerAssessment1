@@ -199,23 +199,6 @@ library(ggplot2)</code></pre>
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
 <pre class="r"><code>activity &lt;- read_csv('activity.zip')</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   steps = col_double(),
-##   date = col_date(format = &quot;&quot;),
-##   interval = col_double()
-## )</code></pre>
-<pre class="r"><code>str(activity)</code></pre>
-<pre><code>## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame': 17568 obs. of  3 variables:
-##  $ steps   : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ date    : Date, format: &quot;2012-10-01&quot; &quot;2012-10-01&quot; ...
-##  $ interval: num  0 5 10 15 20 25 30 35 40 45 ...
-##  - attr(*, &quot;spec&quot;)=
-##   .. cols(
-##   ..   steps = col_double(),
-##   ..   date = col_date(format = &quot;&quot;),
-##   ..   interval = col_double()
-##   .. )</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>

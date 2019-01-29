@@ -33,32 +33,6 @@ library(ggplot2)
 activity <- read_csv('activity.zip')
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   steps = col_double(),
-##   date = col_date(format = ""),
-##   interval = col_double()
-## )
-```
-
-```r
-str(activity)
-```
-
-```
-## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame':	17568 obs. of  3 variables:
-##  $ steps   : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ date    : Date, format: "2012-10-01" "2012-10-01" ...
-##  $ interval: num  0 5 10 15 20 25 30 35 40 45 ...
-##  - attr(*, "spec")=
-##   .. cols(
-##   ..   steps = col_double(),
-##   ..   date = col_date(format = ""),
-##   ..   interval = col_double()
-##   .. )
-```
-
 
 ## What is mean total number of steps taken per day?
 
