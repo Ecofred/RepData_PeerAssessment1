@@ -258,7 +258,7 @@ points(max_avg_step, col = 'red')</code></pre>
 <h2>Imputing missing values</h2>
 <pre class="r"><code>na_count = is.na(activity$steps) %&gt;% sum</code></pre>
 <p>There are 2304 NAs in the <em>activity</em> dataset.</p>
-<p>We are going to impute the NAs with the average value on the associated interval and save it in the <strong>steps_imputed</strong> variable</p>
+<p>We are going to impute the NAs with the average value on the associated interval and save in a new dataset <em>activity_na_imputed</em></p>
 <pre class="r"><code>activity_na_imputed &lt;-
   activity %&gt;%
   left_join(int_mean, by='interval') %&gt;% 
@@ -274,7 +274,8 @@ median_step_day_imputed &lt;- median(sum_step_day_imputed$step_day, na.rm = TRUE
 
 diff_mean &lt;- mean_step_day_imputed - mean_step_day
 diff_median &lt;- median_step_day_imputed - median_step_day</code></pre>
-<p>With NA imputed, the median is 10766.1886792453 and the mean is 10766.1886792453 steps per day. Compared with the NA remove statistics, the median is changed by 371.1886792 and the mean by 1411.959171. It clearly have an impact, mostly on the mean.</p>
+<p>With NA imputed, the median is 10766.1886792453 and the mean is 10766.1886792453 steps per day. Compared with the ‘NA removed’-statistics, the median is changed by 371.1886792 and the mean by 1411.959171.</p>
+<p>One of the impact is to make the mean and median more similar.</p>
 <pre class="r"><code>hist(sum_step_day_imputed$step_day, 
      main = 'total number of steps taken per day - imputation performed',
      xlab = 'number of steps')
@@ -286,9 +287,12 @@ text(median_step_day_imputed + 2000, 20, 'median', col = 'red')</code></pre>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+<pre class="r"><code># need to make use of English names for the days to make my code reproducible
+Sys.setlocale(&quot;LC_TIME&quot;,&quot;C&quot;)</code></pre>
+<pre><code>## [1] &quot;C&quot;</code></pre>
 <pre class="r"><code>weekend &lt;-
 activity %&gt;% 
-  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Samstag', 'Sonntag'), 'weekend', 'weekday'))) %&gt;% 
+  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Sunday', 'Saturday'), 'weekend', 'weekday'))) %&gt;% 
   group_by(interval, day_type) %&gt;% 
   summarise(avg_daily = mean(steps,na.rm = TRUE))
 

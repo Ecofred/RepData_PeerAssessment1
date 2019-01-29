@@ -13,7 +13,8 @@ Please find the figures into **"PA1_template_files\figure-html"**
 the rmarkdown::render() has been used to produce the .md and .html. knit2html is
 depreciated. I get the following error else:
 
-Error: It seems you should call rmarkdown::render() instead of knitr::knit2html() because PA1_template.Rmd appears to be an R Markdown v2 document
+Error: It seems you should call rmarkdown::render() instead of knitr::knit2html() 
+because PA1_template.Rmd appears to be an R Markdown v2 document
 
 ** END OF MESSAGE**
 
@@ -89,7 +90,7 @@ na_count = is.na(activity$steps) %>% sum
 
 There are `r na_count` NAs in the *activity* dataset.
 
-We are going to impute the NAs with the average value on the associated interval and save it in the **steps_imputed** variable
+We are going to impute the NAs with the average value on the associated interval and save in a new dataset *activity_na_imputed*
 
 ```{r}
 activity_na_imputed <-
@@ -115,9 +116,9 @@ diff_median <- median_step_day_imputed - median_step_day
 ```
 
 With NA imputed, the median is `r as.character(median_step_day_imputed)` and the mean is `r as.character(mean_step_day_imputed)` steps per day.
-Compared with the NA remove statistics, the median is changed by `r diff_median` and the mean by `r diff_mean`.
-It clearly have an impact, mostly on the mean.
+Compared with the 'NA removed'-statistics, the median is changed by `r diff_median` and the mean by `r diff_mean`.
 
+One of the impact is to make the mean and median more similar.
 
 ```{r hist_na_imputed}
 hist(sum_step_day_imputed$step_day, 
@@ -133,12 +134,15 @@ text(median_step_day_imputed + 2000, 20, 'median', col = 'red')
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-
+``` {r local_en_us}
+# need to make use of English names for the days to make my code reproducible
+Sys.setlocale("LC_TIME","C")
+```
 ```{r workday_vs_weekend}
 
 weekend <-
 activity %>% 
-  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Samstag', 'Sonntag'), 'weekend', 'weekday'))) %>% 
+  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Sunday', 'Saturday'), 'weekend', 'weekday'))) %>% 
   group_by(interval, day_type) %>% 
   summarise(avg_daily = mean(steps,na.rm = TRUE))
 

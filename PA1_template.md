@@ -13,7 +13,8 @@ Please find the figures into **"PA1_template_files\figure-html"**
 the rmarkdown::render() has been used to produce the .md and .html. knit2html is
 depreciated. I get the following error else:
 
-Error: It seems you should call rmarkdown::render() instead of knitr::knit2html() because PA1_template.Rmd appears to be an R Markdown v2 document
+Error: It seems you should call rmarkdown::render() instead of knitr::knit2html() 
+because PA1_template.Rmd appears to be an R Markdown v2 document
 
 ** END OF MESSAGE**
 
@@ -120,7 +121,7 @@ na_count = is.na(activity$steps) %>% sum
 
 There are 2304 NAs in the *activity* dataset.
 
-We are going to impute the NAs with the average value on the associated interval and save it in the **steps_imputed** variable
+We are going to impute the NAs with the average value on the associated interval and save in a new dataset *activity_na_imputed*
 
 
 ```r
@@ -146,9 +147,9 @@ diff_median <- median_step_day_imputed - median_step_day
 ```
 
 With NA imputed, the median is 10766.1886792453 and the mean is 10766.1886792453 steps per day.
-Compared with the NA remove statistics, the median is changed by 371.1886792 and the mean by 1411.959171.
-It clearly have an impact, mostly on the mean.
+Compared with the 'NA removed'-statistics, the median is changed by 371.1886792 and the mean by 1411.959171.
 
+One of the impact is to make the mean and median more similar.
 
 
 ```r
@@ -167,11 +168,19 @@ text(median_step_day_imputed + 2000, 20, 'median', col = 'red')
 ## Are there differences in activity patterns between weekdays and weekends?
 
 
+```r
+# need to make use of English names for the days to make my code reproducible
+Sys.setlocale("LC_TIME","C")
+```
+
+```
+## [1] "C"
+```
 
 ```r
 weekend <-
 activity %>% 
-  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Samstag', 'Sonntag'), 'weekend', 'weekday'))) %>% 
+  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Sunday', 'Saturday'), 'weekend', 'weekday'))) %>% 
   group_by(interval, day_type) %>% 
   summarise(avg_daily = mean(steps,na.rm = TRUE))
 
