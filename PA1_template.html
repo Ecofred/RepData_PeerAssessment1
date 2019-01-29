@@ -189,19 +189,11 @@ $(document).ready(function () {
 
 
 <p>** MESSAGE TO THE REVIEWER **</p>
-<p>the current Rstudefault is to save image in the **(file_name)_files** folder.</p>
-<p>Please find the figures into <strong>“PA1_template_files-html”</strong></p>
+<p>the current Rstudefault is to save image in the **(file_name)_files** folder. Please find the figures into <strong>“PA1_template_files-html”</strong></p>
+<p>the rmarkdown::render() has been used to produce the .md and .html. knit2html is depreciated.</p>
 <pre class="r"><code>library(readr)
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(ggplot2)</code></pre>
+library(dplyr)
+library(ggplot2)</code></pre>
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
 <pre class="r"><code>activity &lt;- read_csv('activity.zip')</code></pre>

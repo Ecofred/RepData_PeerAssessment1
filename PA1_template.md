@@ -8,33 +8,15 @@ output:
 ** MESSAGE TO THE REVIEWER **
 
 the current Rstudefault is to save image in the **(file_name)_files** folder.
-
 Please find the figures into **"PA1_template_files\figure-html"**
+
+the rmarkdown::render() has been used to produce the .md and .html. knit2html is
+depreciated.
 
 
 ```r
 library(readr)
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)
 ```
 
