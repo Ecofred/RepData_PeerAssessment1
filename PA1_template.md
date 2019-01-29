@@ -11,7 +11,13 @@ the current Rstudefault is to save image in the **(file_name)_files** folder.
 Please find the figures into **"PA1_template_files\figure-html"**
 
 the rmarkdown::render() has been used to produce the .md and .html. knit2html is
-depreciated.
+depreciated. I get the following error else:
+
+Error: It seems you should call rmarkdown::render() instead of knitr::knit2html() because PA1_template.Rmd appears to be an R Markdown v2 document
+
+** END OF MESSAGE**
+
+
 
 
 ```r
