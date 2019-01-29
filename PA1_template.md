@@ -15,6 +15,26 @@ Please find the figures into **"PA1_template_files\figure-html"**
 ```r
 library(readr)
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(ggplot2)
 ```
 
@@ -157,3 +177,21 @@ text(median_step_day_imputed + 2000, 20, 'median', col = 'red')
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
+
+```r
+weekend <-
+activity %>% 
+  mutate(day_type = as.factor(ifelse(weekdays(date) %in% c('Samstag', 'Sonntag'), 'weekend', 'weekday'))) %>% 
+  group_by(interval, day_type) %>% 
+  summarise(avg_daily = mean(steps,na.rm = TRUE))
+
+library(lattice)
+
+xyplot(avg_daily ~ interval | day_type, data=weekend, type='l',layout = c(1,2),
+       xlab='interval', ylab='number of steps', main= 'comparing the weekends and weekdays')
+```
+
+![](PA1_template_files/figure-html/workday_vs_weekend-1.png)<!-- -->
+
